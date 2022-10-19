@@ -4,14 +4,18 @@
 
     <div v-if="error" class="error">{{ error }}</div>
 
+    <Card v-for="(item, index) in standing" :key="index" :item="item" />
+
+
+    <!-- 
     <div v-for="(item, index) in standing" :key="index" :load="log(item)">
       {{ item.position }}:{{ item.Driver.driverId }} [{{ item.points }}]
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script>
-// import RaceCard from "./RaceCard";
+import Card from "./Card.vue";
 export default {
   data() {
     return {
@@ -54,7 +58,7 @@ export default {
         });
     },
   },
-  components: {},
+  components: { Card },
 };
 
 async function getData(year) {
@@ -66,4 +70,6 @@ async function getData(year) {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped></style>
+<style scoped>
+
+</style>

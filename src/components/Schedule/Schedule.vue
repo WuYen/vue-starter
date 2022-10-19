@@ -4,12 +4,7 @@
 
     <div v-if="error" class="error">{{ error }}</div>
 
-    <Card
-      v-for="(race, index) in schedule"
-      :key="index"
-      :nameGP="race.raceName"
-      :track="race.Circuit.circuitName"
-    />
+    <Card v-for="(race, index) in schedule" :key="index" :nameGP="race.raceName" :track="race.Circuit.circuitName" />
   </div>
 </template>
 
@@ -25,16 +20,6 @@ export default {
   },
   created() {
     this.fetchData();
-    // watch the params of the route to fetch the data again
-    // this.$watch(
-    //   () => this.$route.params,
-    //   () => {
-    //     this.fetchData();
-    //   },
-    //   // fetch the data when the view is created and the data is
-    //   // already being observed
-    //   { immediate: true }
-    // );
   },
   methods: {
     fetchData() {
@@ -67,4 +52,6 @@ async function getData(year) {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped></style>
+<style scoped>
+
+</style>

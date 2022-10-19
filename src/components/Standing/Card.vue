@@ -1,8 +1,8 @@
 <template>
   <div class="card">
     <div class="body">
-      <div class="title">{{ nameGP }}</div>
-      <div class="title sub">{{ track }}</div>
+      <div class="title">{{ item.Driver.givenName }} {{item.Driver.familyName}}</div>
+      <div class="title sub">{{ item.points }} POINTS &nbsp;&nbsp;&nbsp; {{item.wins}} WINS</div>
     </div>
   </div>
 </template>
@@ -11,10 +11,8 @@
 export default {
   name: "card",
   props: {
-    nameGP: String,
-    track: String,
-    winner: String,
-    time: String,
+    item: Object,
+
   },
 };
 </script>
