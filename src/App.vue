@@ -1,13 +1,34 @@
 <template>
-  <div id="app">Hello {{ name }} !!</div>
+  <div id="app">
+    <Header></Header>
+    <div class="content">
+      <router-view></router-view>
+    </div>
+  </div>
 </template>
 
 <script>
+import Header from "./components/Common/Header.vue";
 export default {
-  data() {
-    return {
-      name: "Josh",
-    };
+  name: "App",
+  components: {
+    Header,
   },
 };
 </script>
+
+<style>
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0px;
+  font-size: 1.4rem;
+  line-height: 1.357;
+  font-family: "segoe ui", "microsoft jhenghei", "microsoft mhei", stheititc,
+    sans-serif;
+  /* color: var(--color-fg);
+  background-color: var(--color-bg); */
+}
+</style>
