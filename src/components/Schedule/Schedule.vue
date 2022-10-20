@@ -1,57 +1,61 @@
 <template>
   <div class="post">
     <div v-if="loading" class="loading">Loading...</div>
-
-    <div v-if="error" class="error">{{ error }}</div>
-
-    <Card v-for="(race, index) in schedule" :key="index" :nameGP="race.raceName" :track="race.Circuit.circuitName" />
+    <div v-else-if="error" class="error">{{ error }}</div>
+    <div v-else>
+      <NextRound :name="next.raceName" :round="next.round" />
+      <Card
+        v-for="race in schedule"
+        :key="race.round"
+        :nameGP="race.raceName"
+        :track="race.Circuit.circuitName"
+      />
+    </div>
   </div>
 </template>
 
 <script>
 import Card from "./Card.vue";
+import NextRound from "./NextRound.vue";
+import { mapState, mapActions, mapGetters } from "vuex";
+
 export default {
+  components: { Card, NextRound },
   data() {
     return {
-      loading: false,
-      schedule: null,
+      loading: true,
       error: null,
     };
   },
-  created() {
-    this.fetchData();
+  computed: {
+    ...mapState({
+      schedule: (state) => state.schedule.schedule,
+    }),
+    ...mapGetters("schedule", {
+      next: "getNext",
+    }),
   },
   methods: {
-    fetchData() {
-      this.error = this.schedule = null;
-      this.loading = true;
-      let year = this.$route.params.year || 2022;
-      getData(year)
-        .then((data) => {
-          this.schedule = data.MRData.RaceTable.Races;
-        })
-        .catch((err) => {
-          this.error = err.toString();
-        })
-        .finally(() => {
-          this.loading = false;
-        });
+    log(item) {
+      console.log("log", item);
     },
   },
-  components: {
-    Card,
+  async created() {
+    try {
+      var result = await this.$store.dispatch("schedule/getSchedule"); // 等待 actionA 完成
+      setTimeout(() => {
+        this.loading = false;
+      }, 600);
+      this.error = null;
+      console.log("created");
+    } catch (error) {
+      this.error = error;
+      this.loading = false;
+      console.log("created with error", error);
+    }
   },
 };
-
-async function getData(year) {
-  return fetch(`https://ergast.com/api/f1/${year}/results/1.json`)
-    .then((response) => response.json())
-    .then((data) => data)
-    .catch((err) => err);
-}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-
-</style>
+<style scoped></style>

@@ -10,12 +10,7 @@
 <script>
 export default {
   name: "card",
-  props: {
-    nameGP: String,
-    track: String,
-    winner: String,
-    time: String,
-  },
+  props: ["nameGP", "track"],
 };
 </script>
 
