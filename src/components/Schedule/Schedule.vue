@@ -1,6 +1,6 @@
 <template>
-  <div class="post">
-    <div v-if="loading" class="loading">Loading...</div>
+  <div>
+    <Skeleton v-if="loading" class="loading"></Skeleton>
     <div v-else-if="error" class="error">{{ error }}</div>
     <div v-else>
       <NextRound :name="next.raceName" :round="next.round" />
@@ -17,10 +17,11 @@
 <script>
 import Card from "./Card.vue";
 import NextRound from "./NextRound.vue";
+import Skeleton from "./Skeleton.vue";
 import { mapState, mapActions, mapGetters } from "vuex";
 
 export default {
-  components: { Card, NextRound },
+  components: { Card, NextRound, Skeleton },
   data() {
     return {
       loading: true,
@@ -35,27 +36,24 @@ export default {
       next: "getNext",
     }),
   },
-  methods: {
-    log(item) {
-      console.log("log", item);
-    },
-  },
   async created() {
     try {
-      var result = await this.$store.dispatch("schedule/getSchedule"); // 等待 actionA 完成
+      var result = await this.$store.dispatch({
+        type: "schedule/getSchedule",
+        year: 2022,
+      });
+      this.error = null;
+    } catch (error) {
+      this.error = error;
+      console.log("created with error", error);
+    } finally {
       setTimeout(() => {
         this.loading = false;
       }, 600);
-      this.error = null;
       console.log("created");
-    } catch (error) {
-      this.error = error;
-      this.loading = false;
-      console.log("created with error", error);
     }
   },
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped></style>

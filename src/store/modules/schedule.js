@@ -13,13 +13,6 @@ const getters = {
     var result = state.schedule.filter((x) => {
       return new Date(x.date) - diffdate > 0;
     });
-    //   .sort(function (a, b) {
-    //     var distancea = Math.abs(diffdate - new Date(a.date));
-    //     var distanceb = Math.abs(diffdate - new Date(b.date));
-
-    //     return distancea - distanceb; // sort a before b when the distance is smaller
-    //   });
-    console.log("getter getNext", result[0]);
     return result[0];
   },
 };
@@ -28,17 +21,16 @@ const getters = {
 const actions = {
   async getSchedule({ commit }) {
     const response = await api.getSchedule(2022);
-    console.log("getSchedule response", response.MRData.RaceTable.Races);
-    commit("setSchedule", response.MRData.RaceTable.Races);
-    return response.MRData.RaceTable.Races;
+    commit("setSchedule", response.MRData.RaceTable);
+    return response.MRData.RaceTable;
   },
 };
 
 // mutations
 const mutations = {
   setSchedule(state, payload) {
-    console.log("setSchedule", payload);
-    state.schedule = payload;
+    state.schedule = payload.Races;
+    state.season = payload.season;
   },
 };
 

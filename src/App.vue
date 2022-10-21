@@ -28,7 +28,5 @@ body {
   line-height: 1.357;
   font-family: "segoe ui", "microsoft jhenghei", "microsoft mhei", stheititc,
     sans-serif;
-  /* color: var(--color-fg);
-  background-color: var(--color-bg); */
 }
 </style>
