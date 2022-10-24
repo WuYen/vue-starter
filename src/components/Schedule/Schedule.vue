@@ -6,6 +6,7 @@
       <NextRound :name="next.raceName" :round="next.round" />
       <Card
         v-for="race in schedule"
+        :id="'round-' + race.round"
         :key="race.round"
         :nameGP="race.raceName"
         :track="race.Circuit.circuitName"
@@ -38,8 +39,7 @@ export default {
   },
   async created() {
     try {
-      var result = await this.$store.dispatch({
-        type: "schedule/getSchedule",
+      let result = await this.$store.dispatch("schedule/getSchedule", {
         year: 2022,
       });
       this.error = null;

@@ -19,8 +19,10 @@ const getters = {
 
 // actions
 const actions = {
-  async getSchedule({ commit }) {
-    const response = await api.getSchedule(2022);
+  async getSchedule(handler, payload) {
+    const { commit } = handler;
+    const { year = 2022 } = payload;
+    const response = await api.getSchedule(year);
     commit("setSchedule", response.MRData.RaceTable);
     return response.MRData.RaceTable;
   },
