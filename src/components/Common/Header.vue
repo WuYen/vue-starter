@@ -2,21 +2,29 @@
   <div class="padding">
     <nav class="flex v-center dark">
       <div class="logo">
-        <img src="https://www.bing.com/th?id=OSB.pA_kvuoXocgPS5sDNiWD6Q--.png" alt="Formula 1" role="presentation" />
+        <img
+          src="https://www.bing.com/th?id=OSB.pA_kvuoXocgPS5sDNiWD6Q--.png"
+          alt="Formula 1"
+          role="presentation"
+        />
       </div>
       <div class="separator"></div>
       <div class="season">2022 年賽季</div>
     </nav>
     <div class="grid">
-      <router-link class="item underline link" :to="'/schedule'">Schedule</router-link>
-      <router-link class="item underline link" :to="'/standing'">Standing</router-link>
+      <router-link class="item underline link" :to="'/schedule'"
+        >Schedule</router-link
+      >
+      <router-link class="item underline link" :to="'/standing'"
+        >Standing</router-link
+      >
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Header',
+  name: "Header",
 };
 </script>
 
@@ -30,7 +38,7 @@ export default {
 }
 
 .separator::before {
-  content: '|';
+  content: "|";
   display: inline;
   font-size: 2rem;
   line-height: 2rem;
@@ -60,6 +68,8 @@ img {
 .grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  padding: 0px 10px;
+  margin-bottom: 20px;
 }
 
 .link {
@@ -77,7 +87,7 @@ img {
 }
 
 .router-link-active::before {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;

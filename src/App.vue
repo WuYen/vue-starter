@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Header></Header>
+    <Header />
     <div class="content">
       <router-view></router-view>
     </div>
@@ -28,5 +28,9 @@ body {
   line-height: 1.357;
   font-family: "segoe ui", "microsoft jhenghei", "microsoft mhei", stheititc,
     sans-serif;
+}
+
+.content {
+  padding: 0px 10px;
 }
 </style>
