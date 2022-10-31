@@ -2,22 +2,15 @@
   <div class="padding">
     <nav class="flex v-center dark">
       <div class="logo">
-        <img
-          src="https://www.bing.com/th?id=OSB.pA_kvuoXocgPS5sDNiWD6Q--.png"
-          alt="Formula 1"
-          role="presentation"
-        />
+        <img src="https://www.bing.com/th?id=OSB.pA_kvuoXocgPS5sDNiWD6Q--.png" alt="Formula 1" role="presentation" />
       </div>
       <div class="separator"></div>
       <div class="season">2022 年賽季</div>
     </nav>
     <div class="grid">
-      <router-link class="item underline link" :to="'/schedule'"
-        >Schedule</router-link
-      >
-      <router-link class="item underline link" :to="'/standing'"
-        >Standing</router-link
-      >
+      <router-link class="item underline link" :to="'/schedule'">Schedule</router-link>
+      <router-link class="item underline link" :to="'/standing/driver'"> Driver Standings</router-link>
+      <router-link class="item underline link" :to="'/standing/team'"> Team Standings</router-link>
     </div>
   </div>
 </template>
@@ -67,7 +60,7 @@ img {
 
 .grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   padding: 0px 10px;
   margin-bottom: 20px;
 }
@@ -79,6 +72,7 @@ img {
   width: 100%;
   text-align: center;
   text-transform: uppercase;
+  font-size: 0.8rem;
 }
 
 .router-link-active {

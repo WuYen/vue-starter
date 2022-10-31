@@ -3,7 +3,10 @@
     <div v-for="index in [1, 2, 3, 4, 5, 6, 7, 8, 9]" :key="index" class="card">
       <div class="body">
         <div class="title skeleton"></div>
-        <div class="title sub skeleton"></div>
+        <div class="title sub ">
+          <div class="skeleton"></div>
+          <div class="skeleton"></div>
+        </div>
       </div>
     </div>
   </div>
@@ -58,11 +61,16 @@ export default {
   border-radius: 0.25rem;
 }
 
-.title.sub.skeleton {
+.title.sub {
+  display: flex;
+}
+
+.title.sub .skeleton {
   margin-top: 10px;
   font-size: 14px;
-  width: 150px;
+  width: 100px;
   height: 19px;
   border-radius: 0.25rem;
+  margin-right: 10px;
 }
 </style>

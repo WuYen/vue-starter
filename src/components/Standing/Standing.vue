@@ -1,68 +1,68 @@
 <template>
   <div class="post">
-    <div v-if="loading" class="loading">Loading...</div>
-
-    <div v-if="error" class="error">{{ error }}</div>
-
-    <Card v-for="(item, index) in standing" :key="index" :item="item" />
-
-
-    <!-- 
-    <div v-for="(item, index) in standing" :key="index" :load="log(item)">
-      {{ item.position }}:{{ item.Driver.driverId }} [{{ item.points }}]
-    </div> -->
+    <Skeleton v-if="loading" class="loading"></Skeleton>
+    <div v-else-if="error" class="error">{{ error }}</div>
+    <div v-else>
+      <DriverCard v-if="type == 'DriverStandings'" v-for="(item, index) in standing" :key="index" :item="item" />
+      <TeamCard v-if="type == 'ConstructorStandings'" v-for="(item, index) in standing" :key="index" :item="item" />
+    </div>
   </div>
 </template>
 
 <script>
-import Card from "./Card.vue";
+import DriverCard from "./DriverCard.vue";
+import TeamCard from "./TeamCard.vue";
+import Skeleton from "./Skeleton.vue";
 export default {
+  components: { DriverCard, Skeleton, TeamCard },
   data() {
     return {
+      type: '',
       loading: false,
       standing: null,
       error: null,
     };
   },
   created() {
-    this.fetchData();
-    // watch the params of the route to fetch the data again
-    // this.$watch(
-    //   () => this.$route.params,
-    //   () => {
-    //     this.fetchData();
-    //   },
-    //   // fetch the data when the view is created and the data is
-    //   // already being observed
-    //   { immediate: true }
-    // );
+    this.$watch(
+      () => this.$route.params,
+      () => {
+        this.standing = null;
+        this.loading = true;
+        this.error = null;
+        this.fetchData();
+      },
+      { immediate: true }
+    );
   },
   methods: {
     log(item) {
       console.log("v-for item", item);
     },
     fetchData() {
-      this.error = this.standing = null;
-      this.loading = true;
-      let year = this.$route.params.year || 2022;
-      getData(year)
+      const year = this.$route.params.year || 2022;
+      const type = this.$route.params.type == 'driver' ? 'DriverStandings' : 'ConstructorStandings';
+      this.type = type;
+      getData(type, year)
         .then((data) => {
           this.standing =
-            data.MRData.StandingsTable.StandingsLists[0].DriverStandings;
+            data.MRData.StandingsTable.StandingsLists[0][type];
         })
         .catch((err) => {
           this.error = err.toString();
         })
         .finally(() => {
-          this.loading = false;
+          setTimeout(() => {
+            this.loading = false;
+          }, 600);
         });
     },
   },
-  components: { Card },
+
 };
 
-async function getData(year) {
-  return fetch(`https://ergast.com/api/f1/${year}/driverStandings/0.json`)
+async function getData(type, year) {
+  return fetch(`https://ergast.com/api/f1/${year}/${type}.json`)
     .then((response) => response.json())
     .then((data) => data)
     .catch((err) => err);

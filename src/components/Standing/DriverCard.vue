@@ -1,15 +1,15 @@
 <template>
   <div class="card">
     <div class="body">
-      <div class="title">{{ item.Driver.givenName }} {{item.Driver.familyName}}</div>
-      <div class="title sub">{{ item.points }} POINTS &nbsp;&nbsp;&nbsp; {{item.wins}} WINS</div>
+      <div class="title">{{ item.Driver.givenName }} {{ item.Driver.familyName }}</div>
+      <div class="title sub">{{ item.points }} POINTS &nbsp;&nbsp;&nbsp; {{ item.wins }} WINS</div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "card",
+  name: "DriverCard",
   props: {
     item: Object,
 

@@ -3,46 +3,16 @@
     <div class="box">
       <div class="arrow">
         <div class="icons">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="shift0"
-          >
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shift0">
             <polyline points="15 18 9 12 15 6"></polyline>
           </svg>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="shift1"
-          >
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shift1">
             <polyline points="15 18 9 12 15 6"></polyline>
           </svg>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="shift2"
-          >
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shift2">
             <polyline points="15 18 9 12 15 6"></polyline>
           </svg>
         </div>
@@ -104,6 +74,7 @@ function animate(target) {
   border-color: #c4c4c4;
   box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%), 0 0 8px hsl(0deg 0% 77% / 40%);
 }
+
 .title {
   text-transform: capitalize;
   font-weight: 600;
@@ -114,12 +85,17 @@ function animate(target) {
   font-size: 14px;
   color: #787878;
 }
+
 .box {
   background-color: #e10600;
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
 }
+
 .pl10 {
   padding-left: 10px;
 }
+
 .arrow {
   height: 100%;
   width: 60px;
@@ -129,17 +105,21 @@ function animate(target) {
   align-items: center;
   position: relative;
 }
+
 .icons {
   color: white;
 }
+
 svg {
   position: relative;
   transform: rotate(-90deg);
   display: block;
 }
+
 .shift0 {
   top: 15px;
 }
+
 .shift2 {
   top: -15px;
 }
