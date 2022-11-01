@@ -13,6 +13,7 @@ module.exports = {
     static: { directory: path.join(__dirname, "dist") },
     port: 9090,
     open: true,
+    historyApiFallback: true, //把historyApiFallback设置为true那么所有的路径都执行index.html
   },
   module: {
     rules: [
@@ -58,6 +59,7 @@ module.exports = {
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
       template: "./src/index.html",
+      publicPath: "/", //all page resource point to root
     }),
   ],
   optimization: {
